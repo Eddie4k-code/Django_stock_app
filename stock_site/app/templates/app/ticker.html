@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="UTF-8">
+    <title>StockSnatcher</title>
+    <link rel="stylesheet" href="/static/app/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Red+Hat+Mono:ital,wght@1,300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Red+Hat+Mono:ital,wght@1,300&display=swap" rel="stylesheet">
+</head>
+    <!-- Grey with black text -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Eddie Stock LookUp</a>
+      </li>
+     <li class="nav-item">
+        <a class="nav-link" href="/stocks">Search</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/stocks/watchlist">Watchlist</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/stocks/accounts/register">Register</a>
+        </li>
+
+        <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+        </li>
+    </ul>
+  </div>
+</nav>
+
+
+<body><div class="card" style="border: 1px dashed rgb(66, 133, 244);">		  		  		</div>
+
+
+
+
+
+    <div class="container">
+      <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+          <div class="card-body" id="ticker-box">
+              <center>
+            <box>
+        <center>
+      <h1 align="center" class="ticker-title">{{ ticker }}</h1>
+        <div><h4 class="price">Current Price: <h4 style="color: green">{{current_price}}</h4></h4></div>
+        <div><h4 class="today-high">Today's High: <h4 style="color: green">{{ todays_high }}</h4></h4></div>
+        </center>
+    </box>
+              </center>
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow" id="profile">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Info</h4>
+          </div>
+          <div class="card-body">
+               <container class="info">
+                   <center>
+        <table>
+  <tr>
+    <td class="heading">3 Month Avg Daily Vol</td>
+    <td>{{avg_daily_vol}}</td>
+  </tr>
+  <tr>
+    <td class="heading">10 Day Avg Daily Vol</td>
+    <td>{{ten_day}}</td>
+  </tr>
+            <tr>
+    <td class="heading">Current Volume</td>
+    <td>{{current_vol}}</td>
+  </tr>
+            <tr>
+    <td class="heading">Market Cap</td>
+    <td>{{marketcap}}</td>
+  </tr>
+                     <tr>
+    <td class="heading">52 Week Change</td>
+    <td>{{fiftyweek}}</td>
+  </tr>
+                                <tr>
+    <td class="heading">Share Float</td>
+    <td>{{share_float}}</td>
+  </tr>
+            <tr>
+    <td class="heading">Short Ratio</td>
+    <td>{{short_ratio}}</td>
+  </tr>
+
+
+</table>
+                       </br>
+                       </br>
+                       </br>
+                       </center>
+
+                   <container class="other-info">
+                       <center>
+        <table>
+  <tr>
+    <td class="heading">Debt to Equity</td>
+      <td>{{debt_to_equity}}</td>
+  </tr>
+  <tr>
+    <td class="heading">Total Cash</td>
+      <td>{{total_cash}}</td>
+  </tr>
+  <tr>
+    <td class="heading">Total Debt</td>
+      <td>{{total_debt}}</td>
+  </tr>
+  <tr>
+    <td class="heading">Total Revenue</td>
+    <td>{{total_revenue}}</td>
+  </tr>
+</table>
+                           </center>
+
+
+    </container>
+
+    </container>
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Recent Articles</h4>
+          </div>
+          <div class="card-body d-flex align-items-center">
+              <div id="stock-articles">
+
+        <div class="container">
+    <div class="row">
+        <center>
+        <div class="col-lg-6">
+            <div class="card-header d-flex align-items-center">
+            <div class="card-body no-padding">
+              <div class="item d-flex align-items-center">
+                <div class="image"><img src="{{article_one.image}}" alt="..." class="img-fluid rounded-circle"></div>
+                <div class="text"><a href="{{article_one.url}}">
+                    <h3 class="h5">{{article_one.title}}</h3></a><small>{{article_one.day}}   </small></div>
+              </div>
+              <div class="item d-flex align-items-center">
+                <div class="image"><img src="{{article_two.image}}" alt="..." class="img-fluid rounded-circle"></div>
+                <div class="text"><a href="{{article_two.url}}">
+                    <h3 class="h5">{{article_two.title}}</h3></a><small>{{article_two.day}}   </small></div>
+              </div>
+              <div class="item d-flex align-items-center">
+                <div class="image"><img src="{{article_three.image}}" alt="..." class="img-fluid rounded-circle"></div>
+                <div class="text"><a href="{{article_three.url}}">
+                    <h3 class="h5">{{article_three.title}}</h3></a><small>{{article_three.day}}   </small></div>
+              </div>
+              <div class="item d-flex align-items-center">
+                <div class="image"><img src="{{article_four.image}}" alt="..." class="img-fluid rounded-circle"></div>
+                <div class="text"><a href="{{article_four.url}}">
+                    <h3 class="h5">{{article_four.title}}</h3></a><small>{{article_four.day}}   </small></div>
+              </div>
+              <div class="item d-flex align-items-center">
+                <div class="image"><img src="{{article_five.image}}" alt="..." class="img-fluid rounded-circle"></div>
+                <div class="text"><a href="{{article_five.url}}">
+                    <h3 class="h5">{{article_five.title}}</h3></a><small>{{article_five.day}}   </small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </center>
+
+
+
+    </div>
+            </div>
+        </div>
+
+</div>
+
+          </div>
+        </div>
+      </div><div class="card-deck mb-3 text-center">
+
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Yearly Chart</h4>
+          </div>
+          <div class="card-body">
+              <container class="charty">
+<div class="col-lg-12" id="plot-graph">{{plot|safe}}</div>
+
+
+</container>
+          </div>
+        </div>
+
+      </div>
+
+      <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+          <div class="col-12 col-md">
+            <img class="mb-2" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
+            <small class="d-block mb-3 text-muted">© 2017-2018</small>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Features</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Cool stuff</a></li>
+              <li><a class="text-muted" href="#">Random feature</a></li>
+              <li><a class="text-muted" href="#">Team feature</a></li>
+              <li><a class="text-muted" href="#">Stuff for developers</a></li>
+              <li><a class="text-muted" href="#">Another one</a></li>
+              <li><a class="text-muted" href="#">Last time</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Resources</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Resource</a></li>
+              <li><a class="text-muted" href="#">Resource name</a></li>
+              <li><a class="text-muted" href="#">Another resource</a></li>
+              <li><a class="text-muted" href="#">Final resource</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>About</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Team</a></li>
+              <li><a class="text-muted" href="#">Locations</a></li>
+              <li><a class="text-muted" href="#">Privacy</a></li>
+              <li><a class="text-muted" href="#">Terms</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </div>
+</body>
+
+
+
+
+</html>
