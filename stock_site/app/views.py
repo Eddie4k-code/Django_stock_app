@@ -205,7 +205,7 @@ def ticker_view(request, ticker_id):
 def watchlist(request):
     try:
         if request.method == 'POST':
-            if request.user.is_authenticated():
+            if request.user:
                 form = WatchlistForm(request.POST)
 
 
