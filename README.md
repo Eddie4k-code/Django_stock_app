@@ -1,4 +1,9 @@
 # Django_stock_app
+
+<h1>DESCRIPTION<h1>
+
+
+
 ![image](https://user-images.githubusercontent.com/98666468/164474681-1510fde0-6938-46e3-ac68-841290a1f6db.png)
 ![image](https://user-images.githubusercontent.com/98666468/164474800-99fa221f-69e0-4951-8d73-ed515ece35ea.png)
 ![image](https://user-images.githubusercontent.com/98666468/164474866-655026f0-aaa1-46d9-9cad-ee32bdc4dc2e.png)
