@@ -67,7 +67,7 @@ def ticker_view(request, ticker_id):
         querystring = {"symbol":f'{ticker_id}'} #Grabing the symbol that the user searched
         headers = {
             "X-RapidAPI-Host": "yh-finance.p.rapidapi.com",
-            "X-RapidAPI-Key": "473e98d262mshdd6559848304f75p191f9fjsn08d74644bdf2"
+            "X-RapidAPI-Key": "<api key here>"
         }
 
         response_market = requests.get(f"https://yh-finance.p.rapidapi.com/stock/v2/get-profile", headers=headers, params=querystring) #CONNECTING TO YH-FINANCE API To get data
@@ -143,7 +143,7 @@ def ticker_view(request, ticker_id):
 
 
     #Grab news from Polygon API https://polygon.io/docs/stocks/get_v2_reference_news
-    news_response = requests.get(f'https://api.polygon.io/v2/reference/news?ticker={ticker_id.upper()}&order=desc&limit=10&sort=published_utc&apiKey=HmhDgxJepK2LSHdNKHbi9qU92xrHMTvx')
+    news_response = requests.get(f'https://api.polygon.io/v2/reference/news?ticker={ticker_id.upper()}&order=desc&limit=10&sort=published_utc&apiKey=<api key here>')
     news_data = news_response.json()
     '''
     ARTICLES CLASS
@@ -235,7 +235,7 @@ def watchlist(request):
                 querystring = {'symbol': f'{str(quote_item)}'}  # Fill in for ticker
                 headers = {
                     "X-RapidAPI-Host": "yh-finance.p.rapidapi.com",
-                    "X-RapidAPI-Key": "473e98d262mshdd6559848304f75p191f9fjsn08d74644bdf2"
+                    "X-RapidAPI-Key": "<api key here>"
                 }
                 api_request = requests.get('https://yh-finance.p.rapidapi.com/stock/v2/get-profile', params=querystring,
                                            headers=headers)
