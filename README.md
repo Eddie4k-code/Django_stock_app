@@ -3,6 +3,7 @@
 <h1>DESCRIPTION</h1>
   </br>
   <p>Users can look up any stock symbol and get some basic info on the stock along with recent articles and a yearly chart. Users can also register for the site and create their own watchlist!</p>
+  <a href="http://eddieo.pythonanywhere.com/stocks/">Check it out live here</a>
 
 
 
